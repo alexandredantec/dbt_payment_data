@@ -2,17 +2,17 @@
 version: 2
 
 sources:
-  - name: global_pay
-    description: A replica of Global Pay PSP API data.
+  - name: globepay
+    description: A replica of Globepay PSP API data.
     tables:
       - name: acceptance_report
-        description: The transactions processed by Global Pay. 
+        description: The transactions processed by Globepay. 
       - name: chargeback_report
-        description: Information on whether a Global Pay transaction incurred a charge back. 
+        description: Information on whether a Globepay transaction incurred a charge back. 
 
 models:
   - name: stg_chargebacks
-    description: "Chargebacks from Globalpay API"
+    description: "Chargebacks from Globepay API"
     columns:
       - name: chargeback_id
         description: "The primary key for this table"
@@ -24,7 +24,7 @@ models:
       - name: is_chargeback
 
   - name: stg_transactions
-    description: "Transactions from Globalpay API"
+    description: "Transactions from Globepay API"
     columns:
       - name: transaction_id
         description: "The primary key for this table"
