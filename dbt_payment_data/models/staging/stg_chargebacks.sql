@@ -8,7 +8,7 @@ with chargebacks as (
     ,source as chargeback_source
     ,chargeback as is_chargeback
 
-    from {{ source('global_pay', 'chargeback_report') }}
+    from {{ source('globepay', 'chargeback_report') }}
 
 )
 

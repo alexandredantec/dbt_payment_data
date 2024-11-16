@@ -18,7 +18,7 @@ with transactions as (
     ,cvv_provided as is_cvv_provided
     ,date_time as transaction_date
 
-    from {{ source('global_pay', 'acceptance_report') }}
+    from {{ source('globepay', 'acceptance_report') }}
 
 )
 

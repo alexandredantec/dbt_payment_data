@@ -1,2 +1,3 @@
 dbt-env/
 logs/
+.vscode/
