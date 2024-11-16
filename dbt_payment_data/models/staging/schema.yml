@@ -22,3 +22,22 @@ models:
       - name: chargeback_status
       - name: chargeback_source
       - name: is_chargeback
+
+  - name: stg_transactions
+    description: "Transactions from Globalpay API"
+    columns:
+      - name: transaction_id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: chargeback_id
+      - name: transaction_country
+      - name: transaction_currency
+      - name: exchange_rates
+      - name: transaction_status
+      - name: transaction_source
+      - name: transaction_state
+      - name: transaction_amount
+      - name: is_cvv_provided
+      - name: transaction_date
