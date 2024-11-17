@@ -35,7 +35,9 @@ extract_rates as (
         ,chargebacks.is_chargeback
 
         ,transactions.transaction_date
-        ,date_trunc(transactions.transaction_date, MONTH) as transaction_month
+        ,date_trunc(transactions.transaction_date, month) as transaction_month
+        ,date_trunc(transactions.transaction_date, week) as transaction_week
+
         {% for currency in currencies %}
         ,case 
             when transactions.transaction_currency = '{{currency}}' then coalesce(safe_cast(json_extract(transactions.exchange_rates, '$.{{currency}}')as float64),0)
@@ -76,6 +78,7 @@ final as (
 
         ,transaction_date
         ,transaction_month
+        ,transaction_week
 
     from extract_rates
 
