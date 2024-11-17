@@ -8,32 +8,43 @@ transactions as (
 
 ),
 
+chargebacks as (
+
+        select * from {{ref('stg_chargebacks')}}
+
+),
+
 extract_rates as (
 
     select
 
-        transaction_id
-        ,chargeback_id
+        transactions.transaction_id
+        ,transactions.chargeback_id
 
-        ,transaction_country
-        ,transaction_currency
-        ,exchange_rates
+        ,transactions.transaction_country
+        ,transactions.transaction_currency
+        ,transactions.exchange_rates
 
-        ,transaction_status
-        ,transaction_source
-        ,transaction_state
+        ,transactions.transaction_status
+        ,transactions.transaction_source
+        ,transactions.transaction_state
 
-        ,transaction_amount
-        ,is_cvv_provided
-        ,transaction_date
+        ,transactions.transaction_amount
+
+        ,transactions.is_cvv_provided
+        ,chargebacks.is_chargeback
+
+        ,transactions.transaction_date
         {% for currency in currencies %}
         ,case 
-            when transaction_currency = '{{currency}}' then cast(json_extract(exchange_rates, '$.{{currency}}')as float64)
+            when transactions.transaction_currency = '{{currency}}' then cast(json_extract(transactions.exchange_rates, '$.{{currency}}')as float64)
             else null
         end as {{currency}}_rate
         {% endfor %}
                 
     from transactions
+    left join chargebacks
+        on transactions.chargeback_id = chargebacks.chargeback_id
 ),
 
 final as (
@@ -56,7 +67,10 @@ final as (
             when transaction_currency = 'USD' then transaction_amount
             else transaction_amount / exchange_rate
         end as usd_amount
+
         ,is_cvv_provided
+        ,is_chargeback
+
         ,transaction_date
 
     from extract_rates
