@@ -64,7 +64,8 @@ Other similar checks were carried out to identify discrepancies in status, data 
 - both raw tables were recreated as staging models in dbt 
 - these two staging models were joined in an intermediate model called `int_transactions`
 - the reason this was done is because there is a complete 1-1 relationship between transactions and chargebacks: the only added information in the chargeback model is a Boolean indicating whether a transaction incurred a chargeback. There is no date column or anything suggesting there is a loose relationship between transaction and chargeback 
-- this allows for optimal analytical processing, as the `int_transactions` model can be used as a fact model which could be joined on other dimensions as part of a star/snowflake schema if we had other tables   
+- an analytical model called `fct_transactions` was added to expose to data consumers and BI tools 
+- this allows for optimal analytical processing, as the `fct_transactions` model can be used as a fact model which could be joined on other dimensions as part of a star/snowflake schema if we had other tables   
 
 #### Code Modularity 
 - a jinja function was used to dynamically extract the currency from the `exchange_rates` (initially named `rates`) column
