@@ -1,0 +1,42 @@
+
+version: 2
+
+models:
+  - name: int_transactions
+    description: "{{ doc('stg_transactions__transactions') }}"
+    columns:
+      - name: transaction_id
+        description: "{{ doc('stg_transactions__transaction_id') }}"
+        data_tests:
+          - unique
+          - not_null
+      - name: chargeback_id
+        description: "{{ doc('stg_chargebacks__chargeback_id') }}"
+      - name: transaction_country
+        description: "{{ doc('stg_transactions__transaction_country') }}"
+      - name: transaction_currency
+        description: "{{ doc('stg_transactions__transaction_currency') }}"
+      - name: exchange_rate
+        description: "{{ doc('int_transactions__exchange_rate') }}"
+        data_tests:
+          - not_null
+          - not_zero
+      - name: transaction_source
+        description: "{{ doc('stg_transactions__transaction_source') }}"
+      - name: transaction_state
+        description: "{{ doc('stg_transactions__transaction_state') }}"
+      - name: original_currency_amount
+        description: "{{ doc('stg_transactions__transaction_amount') }}"
+      - name: usd_amount
+        description: "{{ doc('int_transactions__usd_amount') }}"
+        data_tests:
+          - not_null
+          - not_zero
+      - name: is_cvv_provided
+        description: "{{ doc('stg_transactions__is_cvv_provided') }}"
+      - name: is_succesful_request
+        description: "{{ doc('stg_chargebacks__is_succesful_request') }}"
+      - name: is_chargeback
+        description: "{{ doc('stg_chargebacks__is_chargeback') }}"
+      - name: transaction_date
+        description: "{{ doc('stg_transactions__transaction_currency') }}"

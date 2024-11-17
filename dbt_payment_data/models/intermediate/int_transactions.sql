@@ -37,7 +37,7 @@ extract_rates as (
         ,transactions.transaction_date
         {% for currency in currencies %}
         ,case 
-            when transactions.transaction_currency = '{{currency}}' then cast(json_extract(transactions.exchange_rates, '$.{{currency}}')as float64)
+            when transactions.transaction_currency = '{{currency}}' then coalesce(safe_cast(json_extract(transactions.exchange_rates, '$.{{currency}}')as float64),0)
             else null
         end as {{currency}}_rate
         {% endfor %}
@@ -64,6 +64,7 @@ final as (
         ,transaction_amount as original_currency_amount
         ,case
             when transaction_currency = 'USD' then transaction_amount
+            when exchange_rate is null or exchange_rate = 0 then null
             else transaction_amount / exchange_rate
         end as usd_amount
 
