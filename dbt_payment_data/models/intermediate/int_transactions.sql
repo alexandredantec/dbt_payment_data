@@ -44,7 +44,9 @@ extract_rates as (
                 
     from transactions
     left join chargebacks
-        on transactions.chargeback_id = chargebacks.chargeback_id
+        on (transactions.chargeback_id = chargebacks.chargeback_id and chargebacks.is_successful_request)
+    
+    where transactions.is_successful_request
 ),
 
 final as (
@@ -69,7 +71,6 @@ final as (
         end as usd_amount
 
         ,is_cvv_provided
-        ,is_successful_request
         ,is_chargeback
 
         ,transaction_date
