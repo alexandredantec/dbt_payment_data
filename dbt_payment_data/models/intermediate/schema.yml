@@ -37,5 +37,7 @@ models:
         description: "{{ doc('stg_chargebacks__is_chargeback') }}"
       - name: transaction_date
         description: "{{ doc('stg_transactions__transaction_currency') }}"
+      - name: transaction_week
+        description: "{{ doc('int_transactions__transaction_week') }}"
       - name: transaction_month
         description: "{{ doc('int_transactions__transaction_month') }}"

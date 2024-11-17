@@ -29,6 +29,7 @@ final as (
 
         ,transactions.transaction_date
         ,transactions.transaction_month
+        ,transactions.transaction_week
 
     from transactions
 
