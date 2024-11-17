@@ -1,5 +1,5 @@
 {% docs stg_transactions__transactions %}
-Transactions from the Globepay API - a transaction represents a debit or credit card payment processed for Deel through the Globepay API 
+Transactions from the Globepay API - a transaction represents a debit or credit card payment processed for AwesomeCompany through the Globepay API 
 {% enddocs %}
 
 {% docs stg_transactions__transaction_id %}
