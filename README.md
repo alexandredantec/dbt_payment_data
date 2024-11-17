@@ -101,3 +101,5 @@ More tests are available in the PR history on the git repo
 - the purpose of the documentation is to guide any new team member / technically savvy business stakeholder understand the data
 - for non technical business stakeholders, documentation should live in a data catalogue or as part of a BI tool (e.g. Looker)
 
+### Lineage Overview:
+![image](https://github.com/user-attachments/assets/fce02ef7-d1fa-4ab7-b5fa-213ebea47170)
