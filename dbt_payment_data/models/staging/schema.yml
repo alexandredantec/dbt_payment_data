@@ -3,41 +3,54 @@ version: 2
 
 sources:
   - name: globepay
-    description: A replica of Globepay PSP API data.
+    description: "A replica of Globepay PSP API data"
     tables:
       - name: acceptance_report
-        description: The transactions processed by Globepay. 
+        description: "The transactions processed by Globepay"
       - name: chargeback_report
-        description: Information on whether a Globepay transaction incurred a charge back. 
+        description: "Information on whether a Globepay transaction incurred a chargeback"
 
 models:
   - name: stg_chargebacks
-    description: "Chargebacks from Globepay API"
+    description: "{{ doc('stg_chargebacks__chargebacks') }}"
     columns:
       - name: chargeback_id
-        description: "The primary key for this table"
+        description: "{{ doc('stg_chargebacks__chargeback_id') }}"
         data_tests:
           - unique
           - not_null
-      - name: chargeback_status
       - name: chargeback_source
+        description: "{{ doc('stg_chargebacks__chargeback_source') }}"
       - name: is_chargeback
+        description: "{{ doc('stg_chargebacks__is_chargeback') }}"
+      - name: is_succesful_request
+        description: "{{ doc('stg_chargebacks__is_succesful_request') }}"
 
   - name: stg_transactions
-    description: "Transactions from Globepay API"
+    description: "{{ doc('stg_transactions__transactions') }}"
     columns:
       - name: transaction_id
-        description: "The primary key for this table"
+        description: "{{ doc('stg_transactions__transaction_id') }}"
         data_tests:
           - unique
           - not_null
       - name: chargeback_id
+        description: "{{ doc('stg_chargebacks__chargeback_id') }}"
       - name: transaction_country
+        description: "{{ doc('stg_transactions__transaction_country') }}"
       - name: transaction_currency
+        description: "{{ doc('stg_transactions__transaction_currency') }}"
       - name: exchange_rates
-      - name: transaction_status
+        description: "{{ doc('stg_transactions__exchange_rates') }}"
       - name: transaction_source
+        description: "{{ doc('stg_transactions__transaction_source') }}"
       - name: transaction_state
+        description: "{{ doc('stg_transactions__transaction_state') }}"
       - name: transaction_amount
+        description: "{{ doc('stg_transactions__transaction_amount') }}"
       - name: is_cvv_provided
+        description: "{{ doc('stg_transactions__is_cvv_provided') }}"
+      - name: is_succesful_request
+        description: "{{ doc('stg_chargebacks__is_succesful_request') }}"
       - name: transaction_date
+        description: "{{ doc('stg_transactions__transaction_currency') }}"

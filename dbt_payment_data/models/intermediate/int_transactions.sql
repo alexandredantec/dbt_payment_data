@@ -25,13 +25,13 @@ extract_rates as (
         ,transactions.transaction_currency
         ,transactions.exchange_rates
 
-        ,transactions.transaction_status
         ,transactions.transaction_source
         ,transactions.transaction_state
 
         ,transactions.transaction_amount
 
         ,transactions.is_cvv_provided
+        ,transactions.is_successful_request
         ,chargebacks.is_chargeback
 
         ,transactions.transaction_date
@@ -58,7 +58,6 @@ final as (
         ,transaction_currency
         ,exchange_rate
 
-        ,transaction_status
         ,transaction_source
         ,transaction_state
 
@@ -69,6 +68,7 @@ final as (
         end as usd_amount
 
         ,is_cvv_provided
+        ,is_successful_request
         ,is_chargeback
 
         ,transaction_date
