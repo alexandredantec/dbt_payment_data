@@ -28,6 +28,7 @@ final as (
         ,transactions.is_chargeback
 
         ,transactions.transaction_date
+        ,transactions.transaction_month
 
     from transactions
 
