@@ -50,7 +50,15 @@ select distinct currency,country from `globepay.acceptance_report`
 
 --> there are no countries where multiple currencies are used, and two countries seem to process transactions in USD, the US and the United Arab Emirates (ISO country code: AE) 
 
-Other similar checks were carried out to identify discrepancies in status, data type, or source. The only difficult point is the fact that exchange rates are stored as a json column and need to be extracted   
+Other similar checks were carried out to identify discrepancies in status, data type, or source. The only difficult point is the fact that exchange rates are stored as a json column and need to be extracted
+
+Two other consistency tests were carried out during the analysis phase: 
+
+- a comparison of the exchange rates with their real world counterparts to ensure they all work in the same way and contain the value of 1 USD in the local currency 
+
+- a basic overview of the dates using `max()` and `min()` to ensure there are no outliers 
+
+More tests are available in the PR history on the git repo 
 
 ### Architecture Overview:
 
