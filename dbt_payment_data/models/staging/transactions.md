@@ -35,5 +35,5 @@ Indicates whether the card security code (CVV) was provided during payment, expr
 {% enddocs %}
 
 {% docs stg_transactions__transaction_date %}
-Timestamp at which the transaction was processed, i.e. the timestamp for the API reaponse  
+Timestamp at which the transaction was processed, i.e. the timestamp for the API response  
 {% enddocs %}
